@@ -1,0 +1,22 @@
+<div class="container">
+    <div 
+        class="list-title"
+        *ngIf="cheapestGasStations != null"
+    >
+        Billigste Tankstellen
+    </div>
+    <app-search-result-item
+        *ngFor="let result of cheapestGasStations"
+        [priceSearchResult]="result"
+    ></app-search-result-item>
+    <div 
+        class="list-title"
+        *ngIf="closestGasStations != null"
+    >
+        Näheste Tankstellen
+    </div>
+    <app-search-result-item
+        *ngFor="let result of closestGasStations"
+        [priceSearchResult]="result"
+    ></app-search-result-item>
+</div>

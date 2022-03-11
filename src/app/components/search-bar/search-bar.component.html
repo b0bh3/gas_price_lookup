@@ -1,0 +1,41 @@
+<div class="container">
+  <mat-form-field class="search-bar" appearance="fill">
+      <mat-label>Ort</mat-label>
+      <input type="text"
+            aria-label="Ort"
+            matInput
+            [formControl]="city"
+            [matAutocomplete]="auto">
+            <button 
+              mat-icon-button 
+              matPrefix 
+              color="secondary"
+              title="Mein Standort"
+            ><mat-icon class="gray-icon">my_location</mat-icon>
+            </button>
+            <button 
+              mat-icon-button 
+              matSuffix 
+              color="secondary" 
+              (click)="onSearch()"
+              title="Suchen"
+            ><mat-icon class="gray-icon">search</mat-icon>
+            </button>
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{toString(option)}}
+        </mat-option>
+      </mat-autocomplete>
+  </mat-form-field>
+  <div class="fuel-selection">
+    <mat-button-toggle-group 
+      name="fuelType" 
+      aria-label="fuel type" 
+      [formControl]="fuelType"
+    >
+      <mat-button-toggle value="DIE">Diesel</mat-button-toggle>
+      <mat-button-toggle value="SUP" checked="true">Super 95</mat-button-toggle>
+      <mat-button-toggle value="GAS">Erdgas</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+</div>
