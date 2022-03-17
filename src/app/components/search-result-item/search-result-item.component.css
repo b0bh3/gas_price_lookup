@@ -7,7 +7,6 @@
 .gas-station, .fuel-price {
     border-radius: 12px;
     padding: 12px;
-    /* border: 1px solid rgba(0, 0, 0, 0.15); */
     box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.15);
     margin-bottom: 20px;
 }
@@ -18,11 +17,17 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    min-width: 208px;
 }
 
 .gas-station .title {
+    flex-grow: 0;
+    width: auto;
     font-size: 18px;
     font-weight: 600;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .gas-station .content {
@@ -31,8 +36,21 @@
     font-size: 14px;
 }
 
+.gas-station .address {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.gas-station .distance {
+    flex-shrink: 0;
+    margin-left: 5px;
+}
+
 .fuel-price {
     width: 208px;
+    min-width: 208px;
+    flex-shrink: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;

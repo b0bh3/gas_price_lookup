@@ -38,7 +38,14 @@ export class PriceSearchResult {
     }
 
     getName(): string {
-        return this.gasStation.name;
+        let name = this.gasStation.name;
+
+        // remove address from name
+        if(name.toLowerCase().replace('ß','ss').includes(this.gasStation.location.address.toLowerCase().replace('ß','ss'))) {
+            name = this._removeAddressFromName(name, this.gasStation.location.address, this.gasStation.location.city);
+        }
+
+        return name;
     }
 
     getPriceAsString(fuelType: FuelType): string {
@@ -46,7 +53,7 @@ export class PriceSearchResult {
         return price.length == 1 ? `${price[0].amount.toFixed(3)}` : '- - - - -';
     }
 
-    private _capsToFirstLetterUpperCase(capsStr: string): string {
+    _capsToFirstLetterUpperCase(capsStr: string): string {
         const strArray = capsStr.split(' ');
         const wordArray = strArray.filter(str => str != strArray[strArray.length-1] || str == strArray[0]).map(str => { 
             return str[0] + str.slice(1, str.length).toLowerCase(); 
@@ -55,5 +62,29 @@ export class PriceSearchResult {
         const result = strArray.length > 1 ? wordArray.toString().replace(',', ' ') + ' ' + strArray[strArray.length-1] : wordArray.toString();
 
         return result;
+    }
+
+    _removeAddressFromName(name: string, address: string, city: string): string {
+        let newName: string;
+        let endOfName: number;
+
+        endOfName = name
+            .toLowerCase()
+            .replace('ß', 'ss')
+            .replace( address
+                .toLowerCase()
+                .replace('ß','ss')
+            , '')
+            .replace( city
+                .toLowerCase()
+                .replace('ß', 'ss')
+            , '')
+            .replace('-','')
+            .trimEnd()
+            .length;
+        
+        newName = name.slice(0, endOfName);
+
+        return newName;
     }
 }

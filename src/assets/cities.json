@@ -14656,5 +14656,97 @@
     "PLZ": 6835,
     "Website": "http://www.zwischenwasser.at",
     "Mail": "gemeinde@zwischenwasser.at"
+  },
+  {
+    "Gemeindename": "Wien - Innere Stadt",
+    "PLZ": 1010
+  },
+  {
+    "Gemeindename": "Wien - Leopoldstadt",
+    "PLZ": 1020
+  },
+  {
+    "Gemeindename": "Wien - Landstraße",
+    "PLZ": 1030
+  },
+  {
+    "Gemeindename": "Wien - Wieden",
+    "PLZ": 1040
+  },
+  {
+    "Gemeindename": "Wien - Margareten",
+    "PLZ": 1050
+  },
+  {
+    "Gemeindename": "Wien - Mariahilf",
+    "PLZ": 1060
+  },
+  {
+    "Gemeindename": "Wien - Neubau",
+    "PLZ": 1070
+  },
+  {
+    "Gemeindename": "Wien - Josefstadt",
+    "PLZ": 1080
+  },
+  {
+    "Gemeindename": "Wien - Alsergrund",
+    "PLZ": 1090
+  },
+  {
+    "Gemeindename": "Wien - Favoriten",
+    "PLZ": 1100
+  },
+  {
+    "Gemeindename": "Wien - Simmering",
+    "PLZ": 1110
+  },
+  {
+    "Gemeindename": "Wien - Meidling",
+    "PLZ": 1120
+  },
+  {
+    "Gemeindename": "Wien - Hietzing",
+    "PLZ": 1130
+  },
+  {
+    "Gemeindename": "Wien - Penzing",
+    "PLZ": 1140
+  },
+  {
+    "Gemeindename": "Wien - Rudolfsheim-Fünfhaus",
+    "PLZ": 1150
+  },
+  {
+    "Gemeindename": "Wien - Ottakring",
+    "PLZ": 1160
+  },
+  {
+    "Gemeindename": "Wien - Hernals",
+    "PLZ": 1170
+  },
+  {
+    "Gemeindename": "Wien - Währing",
+    "PLZ": 1180
+  },
+  {
+    "Gemeindename": "Wien - Döbling",
+    "PLZ": 1190
+  },
+  {
+    "Gemeindename": "Wien - Brigittenau",
+    "PLZ": 1200
+  },
+  {
+    "Gemeindename": "Wien - Florisdorf",
+    "PLZ": 1210
+  },
+  {
+    "Gemeindename": "Wien - Donaustadt",
+    "PLZ": 1220
+  },
+  {
+    "Gemeindename": "Wien - Liesing",
+    "PLZ": 1230
   }
 ]

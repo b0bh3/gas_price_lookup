@@ -1,19 +1,44 @@
 <div class="container">
     <div 
-        class="list-title"
+        *ngIf="msg != null"
+        class="msg"
+    >
+        <div class="msg-title">
+            {{ msg.title }}
+        </div>
+        <div class="msg-content">
+            {{ msg.content }}
+        </div>
+    </div>
+    <div 
+        class="list-header"
         *ngIf="cheapestGasStations != null"
     >
-        Billigste Tankstellen
+        <div class="list-title">
+            Billigste Tankstellen
+        </div>
+        <mat-icon
+            matTooltip="Die 5 billigsten Tankstellen in der Umgebung. Preise stehen nur zur Verfügung, wenn die Tankstelle bei der Spritart unter den Billigsten liegt."
+            matTooltipPosition="left"
+            matTooltipClass="tooltip"
+        >help_outline</mat-icon>
     </div>
     <app-search-result-item
         *ngFor="let result of cheapestGasStations"
         [priceSearchResult]="result"
     ></app-search-result-item>
     <div 
-        class="list-title"
+        class="list-header"
         *ngIf="closestGasStations != null"
     >
-        Näheste Tankstellen
+        <div class="list-title">
+            Näheste Tankstellen
+        </div>
+        <mat-icon
+            matTooltip="Für die nähesten Tankstellen werden keine Preisinformationen bereitgestellt. Daher können nur Preise angezeigt werden, die bei ihrer Spritart unter den Billigsten sind."
+            matTooltipPosition="left"
+            matTooltipClass="tooltip"
+        >help_outline</mat-icon>
     </div>
     <app-search-result-item
         *ngFor="let result of closestGasStations"

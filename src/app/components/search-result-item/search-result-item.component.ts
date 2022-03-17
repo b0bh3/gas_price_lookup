@@ -16,8 +16,7 @@ export class SearchResultItemComponent implements OnInit {
   superPrice?: string;
   gasPrice?: string;
 
-  @Input() set priceSearchResult(myPriceSearchResult) {
-    const priceSearchResult = new PriceSearchResult(myPriceSearchResult as GasStation); 
+  @Input() set priceSearchResult(priceSearchResult: PriceSearchResult) {
     this.name = priceSearchResult.getName();
     this.distance = priceSearchResult.getDistanceAsString();
     this.address = priceSearchResult.getAddressAsString();

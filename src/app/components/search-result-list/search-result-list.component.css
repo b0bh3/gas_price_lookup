@@ -10,10 +10,36 @@
     width: 100%;
 }
 
+.list-header {
+    width: 100%;
+    align-self: flex-start;
+    margin: 20px 0px;
+    display: flex;
+    justify-content: space-between;
+}
 
 .list-title {
     font-size: 30px;
     font-weight: 300;
-    align-self: flex-start;
-    margin: 20px 0px;
+}
+
+.msg {
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.15);
+    margin-bottom: 20px;
+}
+
+.msg-title {
+    font-size: 20px;
+    font-weight: 300;
+    padding-bottom: 10px;
+}
+
+.msg-content {
+    text-align: justify;
+}
+
+::ng-deep .tooltip {
+    font-size: 13px !important;
 }

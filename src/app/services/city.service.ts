@@ -22,7 +22,7 @@ export class CityService {
         return region.zips.map(zip => {
             return {
               zip: zip,
-              name: cities.get(zip) == undefined ? region.name.replace(',',' Bezirk - ') : cities.get(zip),
+              name: cities.get(zip) == undefined ? region.name : cities.get(zip),
               districtCode: region.code
             } as City
         }) as Array<City>

@@ -75,7 +75,12 @@
               "browserTarget": "gas-price-lookup:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "sslKey": "C:/Users/Raphael/coding/gettingBackIntoProgramming/project_gas_prices/server.key",
+            "sslCert": "C:/Users/Raphael/coding/gettingBackIntoProgramming/project_gas_prices/server.crt",
+            "ssl": true
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",

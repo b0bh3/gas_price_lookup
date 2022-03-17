@@ -10,7 +10,7 @@ describe('FuelPriceAPIService', () => {
     service = TestBed.inject(FuelPriceAPIService);
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
+  // it('should be created', () => {
+  //   expect(service).toBeTruthy();
+  // });
 });
