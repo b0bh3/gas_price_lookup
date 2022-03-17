@@ -26,6 +26,7 @@
     <app-search-result-item
         *ngFor="let result of cheapestGasStations"
         [priceSearchResult]="result"
+        [fuelType]="fuelType"
     ></app-search-result-item>
     <div 
         class="list-header"
@@ -43,5 +44,6 @@
     <app-search-result-item
         *ngFor="let result of closestGasStations"
         [priceSearchResult]="result"
+        [fuelType]="fuelType"
     ></app-search-result-item>
 </div>

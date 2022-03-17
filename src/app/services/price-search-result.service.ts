@@ -8,19 +8,22 @@ import { FuelType } from '../enums/fuelType';
 import { FuelPriceAPIService } from './fuel-price-api.service';
 import { ErrorMessage } from '../enums/errorMessage';
 import { GeolocationService } from './geolocation.service';
+import { GeocodeAPIService } from './geocode-api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PriceSearchResultService {
-  private _allPriceSearchResults: PriceSearchResult[];
   private _cheapestGasStations: PriceSearchResult[];
   private _closestGasStations: PriceSearchResult[];
 
   private _priceSearchResultsSubject = new Subject<PriceSearchResult[][]>();
   private _searchResultMessageSubject = new Subject<Message>();
+  private _locationSearchAddressSubject = new Subject<String>();
 
-  constructor(private _fuelPriceAPIService: FuelPriceAPIService, private _geolocationService: GeolocationService) { }
+  private currentFuelType: FuelType;
+
+  constructor(private _fuelPriceAPIService: FuelPriceAPIService, private _geolocationService: GeolocationService, private _geocodeAPIService: GeocodeAPIService) { }
 
   setPriceSearchResults(newPriceSearchResults: PriceSearchResult[]): void {
     this._cheapestGasStations = newPriceSearchResults.slice(0, 5);
@@ -29,7 +32,6 @@ export class PriceSearchResultService {
 
     this._closestGasStations.sort((a, b) => a.getDistance() - b.getDistance());
 
-    this._allPriceSearchResults = newPriceSearchResults;
     this._priceSearchResultsSubject.next([ this._cheapestGasStations, this._closestGasStations ]);
   }
 
@@ -45,6 +47,18 @@ export class PriceSearchResultService {
     return this._searchResultMessageSubject.asObservable();
   }
 
+  onLocationSearchAddress(): Observable<String> {
+    return this._locationSearchAddressSubject.asObservable();
+  }
+
+  setLocationSearchAddress(address: string) {
+    this._locationSearchAddressSubject.next(address);
+  }
+
+  getCurrentFuelType(): FuelType {
+    return this.currentFuelType;
+  }
+
   searchByAddress(city: City, fuelType: FuelType): void {
     // console.log(city);
     // check if City has been selected or searching by string
@@ -57,6 +71,7 @@ export class PriceSearchResultService {
       // console.log(result);
       // Array of Prices
       if(result instanceof Array) {
+        this.currentFuelType = fuelType;
         this.setPriceSearchResults(result)
         this.setSearchResultMessage(null);
       }
@@ -77,6 +92,7 @@ export class PriceSearchResultService {
       .then(result => {
         // Array of Prices
         if(result instanceof Array) {
+          this.currentFuelType = fuelType;
           this.setPriceSearchResults(result)
           this.setSearchResultMessage(null);
         }
@@ -84,7 +100,15 @@ export class PriceSearchResultService {
         else {
           this.setSearchResultMessage(result);
         }
-      })
+      });
+      this._geocodeAPIService.coordinatesToAddress(position.coords).then(result => {
+        if(typeof(result) == 'string') {
+          this.setLocationSearchAddress(result);
+        }
+        else {
+          console.log(result);
+        }
+      });
     })
     .catch((error: GeolocationPositionError) => {
       let message: ErrorMessage;

@@ -15,13 +15,15 @@ import { AppComponent } from './app.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SearchResultListComponent } from './components/search-result-list/search-result-list.component';
 import { SearchResultItemComponent } from './components/search-result-item/search-result-item.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchBarComponent,
     SearchResultListComponent,
-    SearchResultItemComponent
+    SearchResultItemComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

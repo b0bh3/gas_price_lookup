@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FuelType } from 'src/app/enums/fuelType';
-import { GasStation } from 'src/app/interfaces/gas-station';
 import { PriceSearchResult } from 'src/app/models/price-search-result.model';
 
 @Component({
@@ -25,9 +24,20 @@ export class SearchResultItemComponent implements OnInit {
     this.gasPrice = priceSearchResult.getPriceAsString(FuelType.GAS);
   }
 
+  @ViewChild('fuelprice') fuelPrice: ElementRef;
+  @Input() fuelType: FuelType;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit() {
+    this.fuelPrice.nativeElement.childNodes.forEach((childNode) => {
+      if(!childNode.classList.contains(this.fuelType.toLowerCase())) {
+        childNode.classList.add('hide-on-mobile');
+      }
+    });
   }
 
 }

@@ -2,26 +2,28 @@
     <mat-form-field class="search-bar" appearance="fill">
         <mat-label>Ort</mat-label>
         <input type="text"
-              aria-label="Ort"
-              matInput
-              [formControl]="city"
-              [matAutocomplete]="auto">
-              <button 
-                mat-icon-button 
-                matPrefix 
-                color="secondary"
-                (click)="onSearchByLocation()"
-                matTooltip="Mein Standort"
-              ><mat-icon class="gray-icon">my_location</mat-icon>
-              </button>
-              <button 
-                mat-icon-button 
-                matSuffix 
-                color="secondary" 
-                (click)="onSearchByAddress()"
-                matTooltip="Suchen"
-              ><mat-icon class="gray-icon">search</mat-icon>
-              </button>
+          aria-label="Ort"
+          matInput
+          [formControl]="city"
+          [matAutocomplete]="auto"
+          #searchField
+        >
+        <button 
+          mat-icon-button 
+          matPrefix 
+          color="secondary"
+          (click)="onSearchByLocation()"
+          matTooltip="Mein Standort"
+        ><mat-icon class="gray-icon">my_location</mat-icon>
+        </button>
+        <button 
+          mat-icon-button 
+          matSuffix 
+          color="secondary" 
+          (click)="onSearchByAddress()"
+          matTooltip="Suchen"
+        ><mat-icon class="gray-icon">search</mat-icon>
+        </button>
         <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" #MatAutocompleteTrigger>
           <mat-option 
             *ngFor="let option of filteredOptions | async" 

@@ -4,11 +4,12 @@
     justify-content: center;
     max-width: 900px;
     flex-grow: 1;
+    row-gap: 0px;
+    column-gap: 20px;
 }
 
 .search-bar {
     flex-grow: 3;
-    margin-right: 20px;
 }
 
 mat-option .mat-option, .mat-option-text {
@@ -51,3 +52,26 @@ mat-option .mat-option, .mat-option-text {
 .gray-icon {
     color: #aaa;
 }
+
+@media screen and (max-width: 550px) {
+    .container {
+      flex-wrap: wrap;
+    }
+
+    .fuel-selection {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    mat-button-toggle {
+        flex-grow: 1;
+    }
+
+    mat-button-toggle-group {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+    }
+  }

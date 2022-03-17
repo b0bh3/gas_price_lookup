@@ -43,3 +43,10 @@
 ::ng-deep .tooltip {
     font-size: 13px !important;
 }
+
+@media screen and (max-width: 320px) {
+
+    .list-title, mat-icon {
+        font-size: 20px;
+    }
+}

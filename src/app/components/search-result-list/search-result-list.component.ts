@@ -3,6 +3,7 @@ import { PriceSearchResultService } from 'src/app/services/price-search-result.s
 import { Subscription } from 'rxjs';
 import { PriceSearchResult } from 'src/app/models/price-search-result.model';
 import { Message } from 'src/app/interfaces/message';
+import { FuelType } from 'src/app/enums/fuelType';
 
 @Component({
   selector: 'app-search-result-list',
@@ -16,13 +17,14 @@ export class SearchResultListComponent implements OnInit {
   priceSearchResultSupscription: Subscription;
   searchResultMessageSubscription: Subscription;
   msg?: Message;
+  fuelType?: FuelType;
 
 
   constructor(private _priceSearchResultService: PriceSearchResultService) { 
     this.priceSearchResultSupscription = _priceSearchResultService.onPriceSearchResults().subscribe((newPriceSearchResults) => {
       this.cheapestGasStations = newPriceSearchResults[0];
       this.closestGasStations = newPriceSearchResults[1];
-      // this.msg = null;
+      this.fuelType = _priceSearchResultService.getCurrentFuelType();
     });
     this.searchResultMessageSubscription = _priceSearchResultService.onSearchResultMessage().subscribe((newMessage) => {
       this.msg = newMessage;
