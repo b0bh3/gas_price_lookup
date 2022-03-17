@@ -5,7 +5,7 @@ import { FuelPriceAPIService } from './fuel-price-api.service';
   providedIn: 'root'
 })
 export class CityService {
-  RES_CITIES = '../../assets/cities.json';
+  RES_CITIES = '/assets/cities.json';
 
   private _cityList: Array<City>;
 
