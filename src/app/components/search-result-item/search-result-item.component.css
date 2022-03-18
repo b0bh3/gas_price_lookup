@@ -58,6 +58,10 @@
     font-size: 18px;
 }
 
+.hide-on-mobile {
+    color: #c4c4c4;
+}
+
 @media screen and (max-width: 550px) {
 
     .fuel-price {
