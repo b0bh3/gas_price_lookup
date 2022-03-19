@@ -69,7 +69,6 @@ export class SearchBarComponent implements OnInit {
 
   onSearchByAddress() {
     if(this.selectedCity != null) {
-      console.log('onSBA()')
       this._priceSearchResultService.searchByAddress(this.selectedCity, this.selectedFuelType);
       // fix no close on Search button
       setTimeout(() => {

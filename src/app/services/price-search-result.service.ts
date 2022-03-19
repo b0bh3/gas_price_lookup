@@ -29,7 +29,6 @@ export class PriceSearchResultService {
     this._cheapestGasStations = newPriceSearchResults.slice(0, 5);
     
     this._closestGasStations = newPriceSearchResults.slice(5, newPriceSearchResults.length);
-
     this._closestGasStations.sort((a, b) => a.getDistance() - b.getDistance());
 
     this._priceSearchResultsSubject.next([ this._cheapestGasStations, this._closestGasStations ]);
@@ -60,7 +59,6 @@ export class PriceSearchResultService {
   }
 
   searchByAddress(city: City, fuelType: FuelType): void {
-    // console.log(city);
     // check if City has been selected or searching by string
     let address = city.name != undefined && city.zip != undefined ? `${city.zip} ${city.name}` : `${city}`;
 
@@ -68,7 +66,6 @@ export class PriceSearchResultService {
       address, fuelType
     )
     .then(result => {
-      // console.log(result);
       // Array of Prices
       if(result instanceof Array) {
         this.currentFuelType = fuelType;

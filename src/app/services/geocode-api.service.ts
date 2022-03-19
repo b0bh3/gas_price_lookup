@@ -25,9 +25,6 @@ export class GeocodeAPIService {
       const locations = await data.filter(location =>
         location.display_name.includes('Österreich')
       );
-      
-      // console.log(data);
-      // console.log(locations);
 
       // check for results
       if(locations.length == 0) {
@@ -37,17 +34,14 @@ export class GeocodeAPIService {
         } as Message
       }
 
-      let coordinates: GeolocationCoordinates;
-
-      await Promise.all(locations).then(location => {
-        coordinates = {
-          latitude: location[0].lat,
-          longitude: location[0].lon
-        } as GeolocationCoordinates
-      });
+      let coordinates = {
+          latitude: locations[0].lat,
+          longitude: locations[0].lon
+        } as GeolocationCoordinates;
 
       return coordinates;
-    } catch (error: any) {
+    } 
+    catch (error: any) {
       throw new Error(`${error.message}`);
     }
   }
@@ -60,7 +54,6 @@ export class GeocodeAPIService {
 
       const result = await fetch(this.API_LINK + this.API_COORDS_TO_ADDRESS + params.toString());
       const data = await result.json();
-      // console.log(data);
 
       // check for results
       if(!data.hasOwnProperty('address')) {
