@@ -20,8 +20,8 @@ import { ErrorMessage } from '../enums/errorMessage';
   providedIn: 'root'
 })
 export class FuelPriceAPIService {
-  private API_LINK = 'https://api.e-control.at/sprit/1.0/';
-  private API_REGIONS = 'regions';
+  private API_LINK = 'https://api.e-control.at/sprit/1.0';
+  private API_REGIONS = '/regions';
   private API_SEARCH_BY_REGION = '/search/gas-stations/by-region';
   private API_SEARCH_BY_ADDRESS = '/search/gas-stations/by-address';
 

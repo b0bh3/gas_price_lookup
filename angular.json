@@ -77,8 +77,8 @@
           },
           "defaultConfiguration": "development",
           "options": {
-            "sslKey": "C:/Users/Raphael/coding/gettingBackIntoProgramming/project_gas_prices/server.key",
-            "sslCert": "C:/Users/Raphael/coding/gettingBackIntoProgramming/project_gas_prices/server.crt",
+            "sslKey": "./server.key",
+            "sslCert": "./server.crt",
             "ssl": true
           }
         },

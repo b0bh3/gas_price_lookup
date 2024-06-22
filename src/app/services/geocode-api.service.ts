@@ -3,6 +3,7 @@ import { Observable, throwError } from 'rxjs';
 import { ErrorMessage } from '../enums/errorMessage';
 import { City } from '../interfaces/city';
 import { Message } from '../interfaces/message';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,19 +12,22 @@ export class GeocodeAPIService {
   private API_LINK = 'https://geocode.maps.co';
   private API_ADDRESS_TO_COORDS = '/search?'
   private API_COORDS_TO_ADDRESS = '/reverse?';
+  private API_KEY_PARAM = 'api_key';
+  private API_KEY = environment.GEOCODING_API_KEY;
 
   constructor() { }
 
   async addressToCoordinates(address: string): Promise<GeolocationCoordinates | Message> {
     try {
       let params = new URLSearchParams();
+      params.append(this.API_KEY_PARAM, this.API_KEY);
       params.append('q', address);
 
       const result = await fetch(this.API_LINK + this.API_ADDRESS_TO_COORDS + params.toString());
       const data = await result.json();
 
       const locations = await data.filter(location =>
-        location.display_name.includes('Österreich')
+        location.display_name.includes('Österreich') || location.display_name.includes('Austria')
       );
 
       // check for results
@@ -49,10 +53,12 @@ export class GeocodeAPIService {
   async coordinatesToAddress(coords: GeolocationCoordinates): Promise<string | Message> {
     try {
       let params = new URLSearchParams();
+      params.append(this.API_KEY_PARAM, this.API_KEY);
       params.append('lat', `${coords.latitude}`);
       params.append('lon', `${coords.longitude}`);
 
-      const result = await fetch(this.API_LINK + this.API_COORDS_TO_ADDRESS + params.toString());
+      const url = this.API_LINK + this.API_COORDS_TO_ADDRESS + params.toString();
+      const result = await fetch(url);
       const data = await result.json();
 
       // check for results
@@ -62,10 +68,15 @@ export class GeocodeAPIService {
           content: data.error
         } as Message
       }
+      
+      const street =  data.address.road ?? data.address.hamlet;
+      const address = street ? 
+        `${street} ${data.address.house_number ?? ''}` :
+        data.address.square ?? data.address.neighbourhood
 
-      let address: string = `${data.address.road} ${data.address.house_number}, ${data.address.postcode} ${data.address.city}`;
+      let fullAddress: string = `${address ? address + ', ' : ''}${data.address.postcode ?? ''} ${data.address.city ?? data.address.village}`;
 
-      return address;
+      return fullAddress;
     } 
     catch (error: any) {
       throw new Error(`${error.message}`);
